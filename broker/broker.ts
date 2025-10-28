@@ -5,13 +5,21 @@ let theBroker = new Moleculer.ServiceBroker({
   nodeID: "endpoint",
   transporter: {
     type: "Redis", 
+    // options: {
+    //   host: "redis-17181.c8.us-east-1-3.ec2.redns.redis-cloud.com",
+    //   port: 17181,
+    //   password: "F4H39hOAguWlvxw4MWj6TTBVZlV54wXy",
+    //   db: 0,
+    //   tls: {},
+    // },
     options: {
-      host: "redis-17181.c8.us-east-1-3.ec2.redns.redis-cloud.com",
-      port: 17181,
-      password: "F4H39hOAguWlvxw4MWj6TTBVZlV54wXy",
-      db: 0,
-      tls: {},
-    },
+  host: "selected-longhorn-77963-gcp-usc1-search.upstash.io",
+  port: 6379,
+  password: "F4H39hOAguWlvxw4MWj6TTBVZlV54wXy",
+  db: 0,
+  tls: {},
+}
+
   },
 //   transporter: {
 //   type: "TCP",ၑ
