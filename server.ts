@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 import type { Request, Response, NextFunction } from "express";
 const ServiceBroker = require("./broker/broker");

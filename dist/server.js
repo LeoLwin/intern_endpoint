@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+require("dotenv").config();
 const express = require("express");
 const ServiceBroker = require("./broker/broker");
 const indexController = require("./controller/indexController");
