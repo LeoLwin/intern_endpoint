@@ -1,6 +1,5 @@
-
 const router = require("express").Router();
-const ServiceBroker = require("../broker/broker")
+const ServiceBroker = require("../broker/broker");
 import type { Request, Response, NextFunction } from "express";
 
 const handleError = (res: Response, err: Error) => {
@@ -8,12 +7,12 @@ const handleError = (res: Response, err: Error) => {
   res.json({ error: err.message });
 };
 
-router.get("/list",async (req: Request, res: Response) => {
+router.get("/list", async (req: Request, res: Response) => {
   try {
     // your logic here
     const result: any = await ServiceBroker.call("sms.user.list");
-  console.log("Result : ", result)
-    res.json({ message: "List endpoint" });
+    console.log("Result : ", result);
+    res.json({ result });
   } catch (err) {
     handleError(res, err as Error);
   }

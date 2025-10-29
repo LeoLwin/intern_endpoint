@@ -1,9 +1,10 @@
 const Moleculer = require("moleculer");
+require("dotenv").config();
 
 console.log("Connecting to Redis with environment variables:", {
-  host: process.env.RedistHost,
-  port: process.env.RedisPort,
-  password: process.env.RedisPassword,
+  host: process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT,
+  password: process.env.REDIS_PASSWORD,
   // Avoid logging sensitive information like passwords in production
 });
 
@@ -33,9 +34,9 @@ let theBroker = new Moleculer.ServiceBroker({
     // RedisPort=6379
     // RedisPassword
     options: {
-      host: process.env.RedistHost,
-      port: process.env.RedisPort,
-      password: process.env.RedisPassword,
+      host: process.env.REDIS_HOST,
+      port: Number(process.env.REDIS_PORT),
+      password: process.env.REDIS_PASSWORD,
       db: 0,
       tls: {},
     },

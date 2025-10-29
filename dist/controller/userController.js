@@ -10,7 +10,7 @@ router.get("/list", async (req, res) => {
         // your logic here
         const result = await ServiceBroker.call("sms.user.list");
         console.log("Result : ", result);
-        res.json({ message: "List endpoint" });
+        res.json({ result });
     }
     catch (err) {
         handleError(res, err);
