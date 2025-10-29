@@ -9,6 +9,7 @@ ServiceBroker.options.started = async function (broker) {
 };
 ServiceBroker.start().then(() => {
     const app = express();
+    console.log("Something fix");
     app.use("/user", indexController);
     // app.use("/", (req: Request, res: Response) => {
     //     console.log('Hello this is nodejs project')
