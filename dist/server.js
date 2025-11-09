@@ -10,11 +10,8 @@ ServiceBroker.options.started = async function (broker) {
 ServiceBroker.start().then(() => {
     const app = express();
     console.log("Something fix");
+    app.use(express.json());
     app.use("/user", indexController);
-    // app.use("/", (req: Request, res: Response) => {
-    //     console.log('Hello this is nodejs project')
-    //     res.json("This is testing");
-    // });
     const PORT = process.env.PORT || 8000;
     app.listen(PORT, () => {
         console.log(`Server is listening on  http://localhost:${PORT}`);

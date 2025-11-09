@@ -18,4 +18,26 @@ router.get("/list", async (req: Request, res: Response) => {
   }
 });
 
+router.post("/create", async (req: Request, res: Response) => {
+  try {
+    if (!req.body) { return res.json({ message: "Not found req.body" }) }
+    console.log("req.body : ", req.body)
+
+    const { name, email } = req.body;
+
+    if (!name || !email) {
+      return res.json({ message: "Invalid arguments" });
+    }
+
+    // Call Moleculer service
+    const result = await ServiceBroker.call("sms.user.create", { name, email });
+    console.log("Result:", result);
+
+    res.json({ result });
+  } catch (err: any) {
+    handleError(res, err);
+  }
+});
+
+
 export = router; // CommonJS compatible export
