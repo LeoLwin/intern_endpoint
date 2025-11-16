@@ -1,4 +1,3 @@
-// import * as Moleculer from "../node_modules/moleculer/index";
 
 import { ServiceBroker } from "moleculer";
 import * as dotenv from "dotenv";
