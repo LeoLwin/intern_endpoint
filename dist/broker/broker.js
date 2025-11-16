@@ -1,65 +1,70 @@
 "use strict";
+// import * as Moleculer from "../node_modules/moleculer/index";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Moleculer = require("moleculer");
-require("dotenv").config();
-// console.log("Connecting to Redis with environment variables:", {
-//   host: process.env.REDIS_HOST,
-//   port: process.env.REDIS_PORT,
-//   password: process.env.REDIS_PASSWORD,
-//   // Avoid logging sensitive information like passwords in production
-// });
-let theBroker = new Moleculer.ServiceBroker({
-    namespace: "StudentManageMentSystem",
-    nodeID: "endpoint",
+const moleculer_1 = require("moleculer");
+const dotenv = __importStar(require("dotenv"));
+const config_1 = __importDefault(require("../config/config"));
+dotenv.config();
+let theBroker = new moleculer_1.ServiceBroker({
+    namespace: "BlogErina",
+    nodeID: "endpoint-node",
+    logLevel: "info",
     transporter: {
         type: "Redis",
-        // options: {
-        //   host: "redis-17181.c8.us-east-1-3.ec2.redns.redis-cloud.com",
-        //   port: 17181,
-        //   password: "F4H39hOAguWlvxw4MWj6TTBVZlV54wXy",
-        //   db: 0,
-        //   tls: {},
-        // },
-        //     options: {
-        //   host: "selected-longhorn-77963-gcp-usc1-search.upstash.io",
-        //   port: 6379,
-        //   password: "F4H39hOAguWlvxw4MWj6TTBVZlV54wXy",
-        //   db: 0,
-        //   tls: {},
-        // }
-        // },
-        //     RedistHost=selected-longhorn-77963-gcp-usc1-search.upstash.io
-        // RedisPort=6379
-        // RedisPassword
         options: {
-            host: process.env.REDIS_HOST,
-            port: Number(process.env.REDIS_PORT),
-            password: process.env.REDIS_PASSWORD,
+            host: config_1.default.redis.host,
+            port: Number(config_1.default.redis.port),
+            password: config_1.default.redis.password,
             db: 0,
             tls: {},
         },
     },
-    //   transporter: {
-    //   type: "TCP",ၑ
-    //   options: {
-    //     // endpoint doesn't need a fixed port; leave blank or set a different port
-    //     port: 61300
-    //   }
-    // },
-    cacher: {
-        type: "memory",
+    cacher: "Redis",
+    logger: true,
+    created(broker) {
+        broker.logger.info("created");
     },
-    logger: console,
-    logLevel: "info",
-    //   created(broker) {
-    //     broker.logger.info("created");
-    //   },
-    //   started(broker) {
-    //     broker.logger.info("started");
-    //   },
-    //   stopped(broker) {
-    //     broker.logger.info("stopped");
-    //   },
+    started(broker) {
+        broker.logger.info("started");
+    },
+    stopped(broker) {
+        broker.logger.info("stopped");
+    },
 });
-module.exports = theBroker;
-//# sourceMappingURL=broker.js.map
+exports.default = theBroker;

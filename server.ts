@@ -1,12 +1,15 @@
-require("dotenv").config();
-const express = require("express");
-import type { Request, Response, NextFunction } from "express";
-const ServiceBroker = require("./broker/broker");
-const indexController = require("./controller/indexController");
+import * as dotenv from "dotenv"
+dotenv.config();
+import express from "express";
+import ServiceBroker from "./broker/broker";
+import indexController from "./controller/indexController";
+import config from "./config/config";
 
-ServiceBroker.options.started = async function (broker: any) {
+
+ServiceBroker.start().then(() => {
   console.log("callback");
-};
+});
+
 
 ServiceBroker.start().then(() => {
   const app = express();
@@ -15,11 +18,14 @@ ServiceBroker.start().then(() => {
   app.use(express.json());
 
 
+  app.get("/", (req: any, res: any) => {
+    res.send("Welcome to Student Management System API");
+  })
+
+
   app.use("/user", indexController);
 
- 
-
-  const PORT = process.env.PORT || 8000;
+  const PORT = config.port || 8000;
   app.listen(PORT, () => {
     console.log(`Server is listening on  http://localhost:${PORT}`);
   });

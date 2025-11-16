@@ -1,6 +1,7 @@
-const router = require("express").Router();
-const user= require("./userController")
+import express from "express";
+import user from  "./userController"
 
-router.use("/",user )
+const router = express.Router();
+router.use("/", user)
 
-module.exports = router;
+export default router;
