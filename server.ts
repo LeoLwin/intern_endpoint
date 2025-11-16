@@ -1,15 +1,15 @@
 
 import connectToDatabase  from "./helper/dbConnect";
-import theBroker from "./broker/broker";
+import ServiceBroker from "./broker/broker";
 
 
-theBroker.start().then(() => {
+ServiceBroker.start().then(() => {
   console.log("Broker is ready");
 });
 
-theBroker.loadService(__dirname + "/service/service");
+ServiceBroker.loadService(__dirname + "/service/service");
 
-theBroker.start().then(async () => {
+ServiceBroker.start().then(async () => {
   console.log("Started");
  await connectToDatabase();
 
