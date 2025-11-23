@@ -2,7 +2,7 @@
 import { ServiceBroker } from "moleculer";
 import * as dotenv from "dotenv";
 import config from "../config/config";  
-
+ console.log("Initializing Service Broker with Redis transporter...",);
 
 dotenv.config();
 let theBroker = new ServiceBroker(
@@ -18,7 +18,7 @@ let theBroker = new ServiceBroker(
       port: Number(config.redis.port),
       password: config.redis.password,
       db: 0,
-      tls: {},
+      // tls: {},
     },
   },
   cacher: "Redis",

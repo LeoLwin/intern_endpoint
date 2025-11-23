@@ -14,7 +14,12 @@ const handleError = (res: Response, err: Error) => {
 
 router.get("/list", async (req: Request, res: Response) => {
   try {
-    const result: any = await ServiceBroker.call("blog.list");
+    const {current, limit}= req.body;
+    console.log("req.body :", req.body);
+    if(!current || !limit){
+      return res.json({message:"Invalid parameters"})
+    }
+    const result: any = await ServiceBroker.call("blog.list",{current,limit});
     console.log("Result : ", result);
     res.json({ result });
   } catch (err) {

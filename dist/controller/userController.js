@@ -23,7 +23,12 @@ const handleError = (res, err) => {
 };
 router.get("/list", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield broker_1.default.call("blog.list");
+        const { current, limit } = req.body;
+        console.log("req.body :", req.body);
+        if (!current || !limit) {
+            return res.json({ message: "Invalid parameters" });
+        }
+        const result = yield broker_1.default.call("blog.list", { current, limit });
         console.log("Result : ", result);
         res.json({ result });
     }
