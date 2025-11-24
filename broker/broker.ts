@@ -13,7 +13,7 @@ console.log("Redis Config:", {
 let theBroker = new ServiceBroker(
   {
   namespace: "BlogErina",
-  nodeID: "endpoint-node",
+  nodeID: "endpoint-node123444",
   logLevel: "info",
 
   transporter: {

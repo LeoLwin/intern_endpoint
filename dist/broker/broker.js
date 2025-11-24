@@ -48,7 +48,7 @@ console.log("Redis Config:", {
 });
 let theBroker = new moleculer_1.ServiceBroker({
     namespace: "BlogErina",
-    nodeID: "endpoint-node",
+    nodeID: "endpoint-node123444",
     logLevel: "info",
     transporter: {
         type: "Redis",
