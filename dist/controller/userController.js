@@ -23,7 +23,7 @@ const handleError = (res, err) => {
 };
 router.get("/list", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { current, limit } = req.body;
+        const { current, limit, role } = req.body;
         console.log("req.body :", req.body);
         if (!current || !limit) {
             return res.json({ message: "Invalid parameters" });

@@ -14,7 +14,7 @@ const handleError = (res: Response, err: Error) => {
 
 router.get("/list", async (req: Request, res: Response) => {
   try {
-    const {current, limit}= req.body;
+    const {current, limit, role }= req.body;
     console.log("req.body :", req.body);
     if(!current || !limit){
       return res.json({message:"Invalid parameters"})
@@ -98,3 +98,4 @@ router.delete("/delete/:id", async (req: Request, res: Response) => {
 });
 
 export default router; 
+

@@ -5,6 +5,11 @@ import config from "../config/config";
  console.log("Initializing Service Broker with Redis transporter...",);
 
 dotenv.config();
+console.log("Redis Config:", {
+  host: config.redis.host,
+  port: config.redis.port,
+  password: config.redis.password,
+});
 let theBroker = new ServiceBroker(
   {
   namespace: "BlogErina",

@@ -41,6 +41,11 @@ const dotenv = __importStar(require("dotenv"));
 const config_1 = __importDefault(require("../config/config"));
 console.log("Initializing Service Broker with Redis transporter...");
 dotenv.config();
+console.log("Redis Config:", {
+    host: config_1.default.redis.host,
+    port: config_1.default.redis.port,
+    password: config_1.default.redis.password,
+});
 let theBroker = new moleculer_1.ServiceBroker({
     namespace: "BlogErina",
     nodeID: "endpoint-node",
