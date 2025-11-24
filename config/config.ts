@@ -12,13 +12,13 @@ interface Config {
 }
 
 
-console.log("Loading configuration from environment variables..."),{
+console.log("Loading configuration from environment variables...",{
   redis: {
     host: process.env.REDIS_HOST || "127.0.0.1",
     port: process.env.REDIS_PORT ? Number(process.env.REDIS_PORT) : 6379,
     password: process.env.REDIS_PASSWORD,
   },
-};
+})
 
 // Validate and parse environment variables
 const config: Config = {
