@@ -60,7 +60,17 @@ let theBroker = new moleculer_1.ServiceBroker({
             // tls: {},
         },
     },
-    cacher: "Redis",
+    cacher: {
+        type: "Redis",
+        options: {
+            redis: {
+                host: config_1.default.redis.host,
+                port: Number(config_1.default.redis.port),
+                password: config_1.default.redis.password,
+                db: 0,
+            },
+        },
+    },
     logger: true,
     created(broker) {
         broker.logger.info("created");

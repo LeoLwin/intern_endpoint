@@ -26,7 +26,18 @@ let theBroker = new ServiceBroker(
       // tls: {},
     },
   },
-  cacher: "Redis",
+  cacher: {
+    type: "Redis",
+    options: {
+      redis: {
+        host: config.redis.host,
+        port: Number(config.redis.port),
+        password: config.redis.password,
+        db: 0,
+      },
+    },
+  },
+
     logger: true,
     created(broker) {
         broker.logger.info("created");
